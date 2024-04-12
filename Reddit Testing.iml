@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/jcommander-1.72.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/testng-6.9.10.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/auto-service-annotations-1.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/byte-buddy-1.14.12.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/checker-qual-3.41.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/commons-exec-1.3.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/error_prone_annotations-2.23.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/failsafe-3.3.2.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/failureaccess-1.0.2.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/guava-33.0.0-jre.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/j2objc-annotations-2.8.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/jsr305-3.0.2.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-api-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-api-events-1.35.0-alpha.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-context-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-exporter-logging-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-extension-incubator-1.35.0-alpha.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-sdk-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-sdk-common-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-sdk-extension-autoconfigure-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-sdk-extension-autoconfigure-spi-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-sdk-logs-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-sdk-metrics-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-sdk-trace-1.35.0.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/lib/opentelemetry-semconv-1.23.1-alpha.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-api-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-chrome-driver-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-chromium-driver-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v85-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v120-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v121-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v122-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-edge-driver-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-firefox-driver-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-http-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-ie-driver-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-java-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-json-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-manager-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-os-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-remote-driver-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-safari-driver-4.18.1.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-support-4.18.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-api-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-chrome-driver-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-chromium-driver-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v85-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v120-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v121-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-devtools-v122-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-edge-driver-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-firefox-driver-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-http-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-ie-driver-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-json-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-manager-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-os-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-remote-driver-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-safari-driver-4.18.1-sources.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/Java Testing/Selenium Files/selenium-support-4.18.1-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
