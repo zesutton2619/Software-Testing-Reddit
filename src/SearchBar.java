@@ -81,9 +81,46 @@ void clearSearch() throws InterruptedException {
                 topic.click();
                 System.out.println("Clicked on trending topic: " + topicName);
                 clickedTopics.add(topicName);
+                Thread.sleep(1000);
                 driver.navigate().back();
                 Thread.sleep(1000);
             }
+        }
+    }
+
+    @Test(priority = 4)
+    void clickSearchResultTabs() throws InterruptedException {
+        WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
+        searchBar.click();
+        Thread.sleep(2000);
+        searchBar.sendKeys("dogs");
+        searchBar.sendKeys(Keys.ENTER);
+        Thread.sleep(10000);
+
+        // Wait for the search results tabs to be present
+        WebElement tabGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search-results-page-tabgroup")));
+
+        // Get the tab links
+        List<WebElement> tabs = tabGroup.findElements(By.tagName("a"));
+
+        // Wait for the page to load
+        Thread.sleep(2000);
+
+        // Iterate through the remaining tabs
+        for (int i = 0; i < tabs.size(); i++) {
+            // Refresh the tabs list
+            tabGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search-results-page-tabgroup")));
+            tabs = tabGroup.findElements(By.tagName("a"));
+
+            // Get the tab text
+            String tabText = tabs.get(i).findElement(By.tagName("span")).getText().trim();
+
+            // Click on the tab
+            tabs.get(i).click();
+            System.out.println("Clicked on tab: " + tabText);
+
+            // Wait for the page to load
+            Thread.sleep(2000);
         }
     }
 
