@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.openqa.selenium.Keys;
 
+import java.beans.Transient;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
@@ -158,7 +159,32 @@ void clearSearch() throws InterruptedException {
         }
     }
 
+    @Test(priority = 6)
+    void openSortOptions() throws InterruptedException {
+        driver.get("https://www.reddit.com/search/?q=dogs&type=link");
 
+        WebElement dropdown = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("shreddit-sort-dropdown")));
+        dropdown.click();
+        Thread.sleep(2000);
+
+        List<WebElement> options = driver.findElements(By.cssSelector("faceplate-tracker[source='search'][action='click'][noun='sort'] li a"));
+
+        for(int i = options.size()-1; i >= 0; i--){
+            WebElement option = options.get(i);
+
+            // Click the option
+            System.out.println("Selected Sort Option: " + option.getText());
+            option.click();
+            Thread.sleep(2000);
+
+            // Reopen the dropdown for the next iteration
+            dropdown = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("shreddit-sort-dropdown")));
+            dropdown.click();
+            Thread.sleep(1000);
+            options = driver.findElements(By.cssSelector("faceplate-tracker[source='search'][action='click'][noun='sort'] li a"));
+
+        }
+    }
 
     @AfterClass
     public static void tearDown(){
