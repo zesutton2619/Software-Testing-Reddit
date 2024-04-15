@@ -107,7 +107,7 @@ void clearSearch() throws InterruptedException {
         Thread.sleep(2000);
 
         // Iterate through the remaining tabs
-        for (int i = 0; i < tabs.size(); i++) {
+        for (int i = tabs.size()-1; i >= 0; i--) {
             // Refresh the tabs list
             tabGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search-results-page-tabgroup")));
             tabs = tabGroup.findElements(By.tagName("a"));
