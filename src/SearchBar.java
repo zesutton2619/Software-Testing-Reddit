@@ -46,6 +46,7 @@ public class SearchBar {
 ////*[@id="reddit-trending-searches-partial-container"]
 @Test(priority = 2)
 void clearSearch() throws InterruptedException {
+    driver.get("https://www.reddit.com/");
     WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
     searchBar.click();
     searchBar.sendKeys("dogs");
@@ -64,6 +65,7 @@ void clearSearch() throws InterruptedException {
 
     @Test(priority = 3)
     void clickTrendingTopics() throws InterruptedException {
+        driver.get("https://www.reddit.com/");
         // Find the element containing the shadow root
         WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
         searchBar.click();
@@ -92,12 +94,7 @@ void clearSearch() throws InterruptedException {
 
     @Test(priority = 4)
     void clickSearchResultTabs() throws InterruptedException {
-        WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
-        searchBar.click();
-        Thread.sleep(2000);
-        searchBar.sendKeys("dogs");
-        searchBar.sendKeys(Keys.ENTER);
-        Thread.sleep(10000);
+        driver.get("https://www.reddit.com/search/?q=dogs&type=link");
 
         // Wait for the search results tabs to be present
         WebElement tabGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search-results-page-tabgroup")));
