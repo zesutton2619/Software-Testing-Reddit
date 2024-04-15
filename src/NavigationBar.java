@@ -2,6 +2,7 @@ import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.By;
@@ -30,6 +31,49 @@ public class NavigationBar {
     }
 
     @Test(priority = 1)
+    void homePopular() throws InterruptedException {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased waiting time
+
+        // Wait for the entire page to load
+        wait.until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete';"));
+
+        WebElement leftNavTopSection = driver.findElement(By.tagName("left-nav-top-section"));
+
+        // Check if the left-nav-top-section element has a shadow root
+        Boolean hasShadowRoot = (Boolean) ((JavascriptExecutor) driver).executeScript(
+                "return arguments[0].shadowRoot !== null;",
+                leftNavTopSection
+        );
+
+        if (hasShadowRoot) {
+            // Execute JavaScript to find and click the element inside the shadow DOM
+            ((JavascriptExecutor) driver).executeScript(
+                    "let shadowRoot = arguments[0].shadowRoot; " +
+                            "let element = shadowRoot.querySelector('faceplate-tracker[noun=\"home\"] li a'); " +
+                            "if(element) { element.click(); }",
+                    leftNavTopSection
+            );
+            System.out.println("Clicked on tab: " + driver.getTitle());
+            driver.navigate().back();
+
+            // Wait for the entire page to load
+            wait.until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete';"));
+
+            // Execute JavaScript to find and click the element inside the shadow DOM
+            ((JavascriptExecutor) driver).executeScript(
+                    "let shadowRoot = arguments[0].shadowRoot; " +
+                            "let element = shadowRoot.querySelector('faceplate-tracker[noun=\"popular\"] li a'); " +
+                            "if(element) { element.click(); }",
+                    leftNavTopSection
+            );
+            System.out.println("Clicked on tab: " + driver.getTitle());
+            driver.navigate().back();
+        } else {
+            System.out.println("left-nav-top-section element does not have a shadow root.");
+        }
+    }
+
+    @Test(priority = 2)
     void topicGaming() throws InterruptedException {
         // Find the summary element for the "Gaming" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Gaming')]")));
@@ -85,7 +129,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     void topicSports() throws InterruptedException {
         // Find the summary element for the "Sports" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Sports')]")));
@@ -140,7 +184,7 @@ public class NavigationBar {
             }
         }
     }
-    @Test(priority = 3)
+    @Test(priority = 4)
     void topicBusiness() throws InterruptedException {
         // Find the summary element for the "Business" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Business')]")));
@@ -196,7 +240,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 4)
+    @Test(priority = 5)
     void topicCrypto() throws InterruptedException {
         // Find the summary element for the "Crypto" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Crypto')]")));
@@ -252,7 +296,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 5)
+    @Test(priority = 6)
     void topicTelevision() throws InterruptedException {
         // Find the summary element for the "Television" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Television')]")));
@@ -308,7 +352,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 6)
+    @Test(priority = 7)
     void topicCelebrity() throws InterruptedException {
         // Find the summary element for the "Celebrity" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Celebrity')]")));
@@ -364,7 +408,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 7)
+    @Test(priority = 8)
     void seeMore() throws InterruptedException {
         // Find the element containing the shadow root
         WebElement shadowHost = driver.findElement(By.tagName("hui-left-nav-see-more"));
@@ -431,14 +475,77 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 8)
-    void test_8() throws InterruptedException {
+    @Test(priority = 9)
+    void resources() throws InterruptedException {
+        Set<String> clickedResources = new HashSet<>();
 
+        boolean hasMoreResources = true;
+
+        // Click on each tab
+        while (hasMoreResources) {
+            // Find all the tabs underneath "Resources"
+            List<WebElement> resourceTabs = driver.findElements(By.xpath("//div[@id='RESOURCES']//a"));
+
+            // Check if there are any remaining tabs to click
+            if (resourceTabs.isEmpty()) {
+                break;
+            }
+
+            for (int i = 0; i < resourceTabs.size(); i++) {
+                WebElement tab = resourceTabs.get(i);
+                String tabText = tab.getText();
+
+                // Skip the tab if it has already been clicked
+                if (clickedResources.contains(tabText)) {
+                    continue;
+                }
+
+                tab.click();
+                System.out.println("Clicked on tab: " + tabText);
+
+                // Add the clicked tab to the set
+                clickedResources.add(tabText);
+
+                // Navigate back to the "Resources" tab
+                driver.navigate().back();
+                Thread.sleep(1000); // Add a short delay to allow the page to load
+
+                // Re-fetch the list of tabs after navigating back
+                resourceTabs = driver.findElements(By.xpath("//div[@id='RESOURCES']//a"));
+
+                // Break the loop if we've clicked on all available tabs
+                if (clickedResources.size() == resourceTabs.size()) {
+                    hasMoreResources = false;
+                    break;
+                }
+            }
+        }
     }
 
-    @Test(priority = 9)
-    void test_9() throws InterruptedException {
+    private void clickTabByNoun(String noun) {
+        WebElement tabElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//faceplate-tracker[@noun='" + noun + "']/li/a")));
 
+        if (tabElement.isDisplayed()) {
+            tabElement.click();
+        }
+    }
+
+    @Test(priority = 10)
+    void policies() throws InterruptedException {
+        driver.get("https://www.reddit.com/");
+        clickTabByNoun("content_policy_menu");
+        System.out.println("Clicked on tab: " + driver.getTitle());
+        driver.navigate().back();
+        clickTabByNoun("privacy_policy_menu");
+        System.out.println("Clicked on tab: " + driver.getTitle());
+        driver.navigate().back();
+        clickTabByNoun("user_agreement_menu");
+        System.out.println("Clicked on tab: " + driver.getTitle());
+        driver.navigate().back();
+        WebElement policyLink = driver.findElement(By.linkText("Reddit, Inc. © 2024. All rights reserved."));
+        policyLink.click();
+        System.out.println("Click on link: " + driver.getTitle());
+        driver.navigate().back();
     }
     
     @AfterClass
