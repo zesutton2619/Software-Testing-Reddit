@@ -11,6 +11,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.Assert;
 import org.openqa.selenium.Keys;
 
 import java.time.Duration;
@@ -123,6 +124,41 @@ void clearSearch() throws InterruptedException {
             Thread.sleep(2000);
         }
     }
+
+    @Test(priority = 5)
+    void timeOptions() throws InterruptedException {
+        // Navigate to the search page
+        driver.get("https://www.reddit.com/search/?q=dogs&type=link");
+
+        // Wait for the dropdowns to be present
+        List<WebElement> dropdowns = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("shreddit-sort-dropdown")));
+
+        // Click the second dropdown to open the options
+        WebElement secondDropdown = dropdowns.get(1);
+        secondDropdown.click();
+        Thread.sleep(3000); // Wait for the dropdown options to load
+
+        // Find all the options inside the second dropdown
+        List<WebElement> options = driver.findElements(By.cssSelector("faceplate-tracker[source='search'][action='click'][noun='filter'] li a"));
+
+
+        for (int i = options.size()-1; i >= 0; i--) {
+            options = driver.findElements(By.cssSelector("faceplate-tracker[source='search'][action='click'][noun='filter'] li a"));
+
+            WebElement option = options.get(i);
+
+            // Click the option
+            System.out.println("Selected Time Option: " + option.getText());
+            option.click();
+            Thread.sleep(2000);
+            dropdowns = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("shreddit-sort-dropdown")));
+            secondDropdown = dropdowns.get(1);
+            secondDropdown.click();
+            Thread.sleep(1000);
+        }
+    }
+
+
 
     @AfterClass
     public static void tearDown(){
