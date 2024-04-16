@@ -30,7 +30,7 @@ public class NavigationBar {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Test(priority = 1)
+    @Test(priority = 12)
     void homePopular() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased waiting time
 
@@ -73,7 +73,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 2)
+    @Test(priority = 13)
     void topicGaming() throws InterruptedException {
         // Find the summary element for the "Gaming" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Gaming')]")));
@@ -129,7 +129,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 3)
+    @Test(priority = 14)
     void topicSports() throws InterruptedException {
         // Find the summary element for the "Sports" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Sports')]")));
@@ -184,7 +184,7 @@ public class NavigationBar {
             }
         }
     }
-    @Test(priority = 4)
+    @Test(priority = 15)
     void topicBusiness() throws InterruptedException {
         // Find the summary element for the "Business" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Business')]")));
@@ -240,7 +240,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 5)
+    @Test(priority = 16)
     void topicCrypto() throws InterruptedException {
         // Find the summary element for the "Crypto" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Crypto')]")));
@@ -296,7 +296,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 6)
+    @Test(priority = 17)
     void topicTelevision() throws InterruptedException {
         // Find the summary element for the "Television" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Television')]")));
@@ -352,7 +352,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 7)
+    @Test(priority = 18)
     void topicCelebrity() throws InterruptedException {
         // Find the summary element for the "Celebrity" topic with an increased wait time
         WebElement gamingTopicSummary = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//summary[contains(., 'Celebrity')]")));
@@ -408,7 +408,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 8)
+    @Test(priority = 19)
     void seeMore() throws InterruptedException {
         // Find the element containing the shadow root
         WebElement shadowHost = driver.findElement(By.tagName("hui-left-nav-see-more"));
@@ -475,7 +475,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 9)
+    @Test(priority = 20)
     void resources() throws InterruptedException {
         Set<String> clickedResources = new HashSet<>();
 
@@ -530,7 +530,7 @@ public class NavigationBar {
         }
     }
 
-    @Test(priority = 10)
+    @Test(priority = 21)
     void policies() throws InterruptedException {
         driver.get("https://www.reddit.com/");
         clickTabByNoun("content_policy_menu");

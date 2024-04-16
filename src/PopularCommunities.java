@@ -30,7 +30,7 @@ public class PopularCommunities {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Test(priority = 1)
+    @Test(priority = 22)
     void visiblePopularCommunities() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased waiting time
 
@@ -67,7 +67,7 @@ public class PopularCommunities {
         }
     }
 
-    @Test(priority = 2)
+    @Test(priority = 23)
     void seeMorePopularCommunities() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); // Increased waiting time
 

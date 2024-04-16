@@ -32,7 +32,7 @@ public class SearchBar {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Test(priority = 1)
+    @Test(priority = 6)
     void searchBar() throws InterruptedException {
         WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
         searchBar.click();
@@ -44,7 +44,7 @@ public class SearchBar {
     }
 
 ////*[@id="reddit-trending-searches-partial-container"]
-@Test(priority = 2)
+@Test(priority = 7)
 void clearSearch() throws InterruptedException {
     driver.get("https://www.reddit.com/");
     WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
@@ -63,7 +63,7 @@ void clearSearch() throws InterruptedException {
 }
 
 
-    @Test(priority = 3)
+    @Test(priority = 8)
     void clickTrendingTopics() throws InterruptedException {
         driver.get("https://www.reddit.com/");
         // Find the element containing the shadow root
@@ -92,7 +92,7 @@ void clearSearch() throws InterruptedException {
         }
     }
 
-    @Test(priority = 4)
+    @Test(priority = 9)
     void clickSearchResultTabs() throws InterruptedException {
         driver.get("https://www.reddit.com/search/?q=dogs&type=link");
 
@@ -123,7 +123,7 @@ void clearSearch() throws InterruptedException {
         }
     }
 
-    @Test(priority = 5)
+    @Test(priority = 10)
     void timeOptions() throws InterruptedException {
         // Navigate to the search page
         driver.get("https://www.reddit.com/search/?q=dogs&type=link");
@@ -156,7 +156,7 @@ void clearSearch() throws InterruptedException {
         }
     }
 
-    @Test(priority = 6)
+    @Test(priority = 11)
     void openSortOptions() throws InterruptedException {
         driver.get("https://www.reddit.com/search/?q=dogs&type=link");
 
