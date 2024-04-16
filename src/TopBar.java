@@ -75,7 +75,7 @@ public class TopBar {
         System.out.println("Clicked Option: " + secondOption.getText());
         secondOption.click();
         Thread.sleep(2000);
-        driver.navigate().back();
+        driver.get("https://www.reddit.com/");
         threeDots = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"expand-user-drawer-button\"]")));
         threeDots.click();
         WebElement thirdOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"avatar-shop-list-item\"]/a")));
