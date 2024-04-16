@@ -27,7 +27,7 @@ public class LoginSignUp {
     }
 
     @Test(priority = 1)
-    void test_1() throws InterruptedException {
+    void signUp() throws InterruptedException {
         WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
         loginShortcut.click();
 
@@ -48,20 +48,65 @@ public class LoginSignUp {
     }
 
     @Test(priority = 2)
-    void test_2() throws InterruptedException {
-        WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
-        searchBar.click();
-        searchBar.sendKeys("dogs");
-        searchBar.sendKeys(Keys.ENTER);
+    void incorrectSignUp() throws InterruptedException {
+        WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
+        loginShortcut.click();
+
+        WebElement loginUsername = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-username\"]")));
+        loginUsername.click();
+        loginUsername.sendKeys("Perfect-Tourist-9337");
+        Thread.sleep(100);
+
+        WebElement loginPassword = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-password\"]")));
+        loginPassword.click();
+        loginPassword.sendKeys("reddit1234***");
+        Thread.sleep(100);
+
+        //does not work
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login\"]/auth-flow-modal/div[2]/faceplate-tracker/button")));
+        loginButton.click();
         Thread.sleep(5000);
     }
 
     @Test(priority = 3)
-    void test_3() throws InterruptedException {
-        WebElement searchBar = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
-        searchBar.click();
-        searchBar.sendKeys("dogs");
-        searchBar.sendKeys(Keys.ENTER);
+    void login() throws InterruptedException {
+        WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
+        loginShortcut.click();
+
+        WebElement loginUsername = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-username\"]")));
+        loginUsername.click();
+        loginUsername.sendKeys("Perfect-Tourist-9337");
+        Thread.sleep(100);
+
+        WebElement loginPassword = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-password\"]")));
+        loginPassword.click();
+        loginPassword.sendKeys("reddit1234***");
+        Thread.sleep(100);
+
+        //does not work
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login\"]/auth-flow-modal/div[2]/faceplate-tracker/button")));
+        loginButton.click();
+        Thread.sleep(5000);
+    }
+
+    @Test(priority = 4)
+    void incorrectLogin() throws InterruptedException {
+        WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
+        loginShortcut.click();
+
+        WebElement loginUsername = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-username\"]")));
+        loginUsername.click();
+        loginUsername.sendKeys("Not-Perfect-Tourist-9337");
+        Thread.sleep(100);
+
+        WebElement loginPassword = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-password\"]")));
+        loginPassword.click();
+        loginPassword.sendKeys("reddit1234***");
+        Thread.sleep(100);
+
+        //does not work
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login\"]/auth-flow-modal/div[2]/faceplate-tracker/button")));
+        loginButton.click();
         Thread.sleep(5000);
     }
 }
