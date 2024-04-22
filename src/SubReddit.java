@@ -53,16 +53,21 @@ public class SubReddit {
 
     @Test(priority = 1)
     void joinSubReddit() throws InterruptedException {
-        WebElement searchBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
-        searchBar.click();
-        Thread.sleep(2000);
-        searchBar.sendKeys("cats");
-        //Joining SubReddit
-        WebElement subredditJoin = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/div/div[1]/div[1]/section/div/div[2]/shreddit-subreddit-header-buttons")));
-        subredditJoin.click();
+        Actions actions = new Actions(driver);
+        try {
+            // Focus on the body of the page
+            actions.moveToElement(driver.findElement(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large"))).click().perform();
+
+            // Execute JavaScript to click the join button
+            for(int i = 0; i < 7; i++){
+                actions.sendKeys(Keys.TAB).perform();
+            }
+            actions.sendKeys(Keys.ENTER).perform();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         Thread.sleep(5000);
-        driver.navigate().back();
     }
 
     @Test(priority = 2)
@@ -73,6 +78,7 @@ public class SubReddit {
         Thread.sleep(5000);
         driver.navigate().back();
     }
+
 
     @Test(priority = 3)
     void selectPost() throws InterruptedException {
@@ -130,6 +136,13 @@ public class SubReddit {
         //Back to Main Page
         //First 3 Community Bookmarks
 
+    }
+
+    @AfterClass
+    public static void tearDown(){
+        if (driver != null){
+            driver.quit();
+        }
     }
 
 }
