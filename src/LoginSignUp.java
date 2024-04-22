@@ -26,43 +26,63 @@ public class LoginSignUp {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Test(priority = 1)
+    @Test(priority = 3)
     void signUp() throws InterruptedException {
         WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
         loginShortcut.click();
+        Thread.sleep(2000);
 
-        WebElement signUpButton = wait.until(ExpectedConditions.elementToBeClickable(By.linkText(" Sign Up ")));
+        Actions actions = new Actions(driver);
+        try {
+            // Focus on the body of the page
+            actions.moveToElement(driver.findElement(By.xpath("//*[@id=\"login-password\"]"))).click().perform();
 
-        signUpButton.click();
+            // Execute JavaScript to click the join button
+            for(int i = 0; i < 2; i++){
+                actions.sendKeys(Keys.TAB).perform();
+            }
+            actions.sendKeys(Keys.ENTER).perform();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register-email\"]")));
-        emailInput.sendKeys("burneraccount274939402935@gmail.com");
+        emailInput.sendKeys("burneraccount249902935@gmail.com");
 
-        WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register\"]/faceplate-tabpanel/auth-flow-modal[1]/div[2]/faceplate-tracker/button")));
-        continueButton.click();
+        // Continue
+        emailInput.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
 
-        WebElement switchUsername = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register-username\"]/span[2]/button")));
-        switchUsername.click();
-        switchUsername.click();
-        switchUsername.click();
 
-        WebElement passwordInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register-password-container\"]")));
-        passwordInput.sendKeys("booglywoogly1234*");
+        // Change the username
+        for(int i = 0; i < 2; i++){
+            actions.sendKeys(Keys.TAB).perform();
+        }
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(500);
+        actions.sendKeys(Keys.TAB).perform();
+        actions.sendKeys("booglywoogly1234*").perform();
 
-        WebElement continueButtonAgain = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register\"]/faceplate-tabpanel/auth-flow-modal[2]/div[2]/faceplate-tracker/button")));
-        continueButtonAgain.click();
+        // Captcha. need to manually intervene
+        Thread.sleep(45000);
+        for(int i = 0; i < 3; i++){
+            actions.sendKeys(Keys.TAB).perform();
+        }
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(1000);
 
-        //Selects "I prefer not to say"
-        WebElement definitelyNotARobot = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/shreddit-overlay-display//shreddit-signup-drawer//shreddit-drawer/div/shreddit-async-loader/div/shreddit-slotter//span/shreddit-async-loader/onboarding-flow/shreddit-slotter//span/shreddit-async-loader/faceplate-tracker/ob-gender-selection/auth-flow-modal/div/div/button[4]")));
-        definitelyNotARobot.click();
-
-        //Selects category "Am I the A**hole?"
-        WebElement bestAnswer = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"eae456ec-3277-44d5-b364-6881106d262f\"]")));
-        bestAnswer.click();
-
-        WebElement continueAgainAgain = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/shreddit-overlay-display//shreddit-signup-drawer//shreddit-drawer/div/shreddit-async-loader/div/shreddit-slotter//span/shreddit-async-loader/onboarding-flow/shreddit-slotter//span/shreddit-async-loader/faceplate-tracker/ob-interest-picker/auth-flow-modal/div[2]/button")));
-        continueAgainAgain.click();
-        Thread.sleep(5000);
+        actions.sendKeys(Keys.TAB).perform();
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(1000);
+        Thread.sleep(1000);
+        for(int i = 0; i < 15; i++){
+            actions.sendKeys(Keys.TAB).perform();
+            Thread.sleep(1000);
+        }
+        actions.sendKeys(Keys.ENTER).perform();
     }
     //#login > auth-flow-modal > div.w-100 > faceplate-tracker > button
 
@@ -75,48 +95,49 @@ public class LoginSignUp {
         signUpButton.click();
 
         WebElement emailInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register-email\"]")));
-        emailInput.sendKeys("burneraccount274939402935@notarealemailtag.com");
+        emailInput.sendKeys("asd232rfd@gomsdif");
+        emailInput.sendKeys(Keys.ENTER);
     }
 
     @Test(priority = 3)
     void login() throws InterruptedException {
-        WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
+        // Click login shortcut
+        WebElement loginShortcut = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='login-button']")));
         loginShortcut.click();
 
-        WebElement loginUsername = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-username\"]")));
-        loginUsername.click();
+        // Enter username
+        WebElement loginUsername = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='login-username']")));
         loginUsername.sendKeys("Perfect-Tourist-9337");
-        Thread.sleep(100);
+        Thread.sleep(1000);
 
-        WebElement loginPassword = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-password\"]")));
-        loginPassword.click();
+        // Enter password
+        WebElement loginPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='login-password']")));
         loginPassword.sendKeys("reddit1234***");
-        Thread.sleep(100);
-
-        //does not work
-        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login\"]/auth-flow-modal/div[2]/faceplate-tracker/button")));
-        loginButton.click();
-        Thread.sleep(5000);
+        // Login
+        Thread.sleep(1000);
+        loginPassword.sendKeys(Keys.ENTER);
     }
 
     @Test(priority = 4)
     void incorrectLogin() throws InterruptedException {
+        // Click login shortcut
         WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
         loginShortcut.click();
 
+        // Enter username
         WebElement loginUsername = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-username\"]")));
         loginUsername.click();
         loginUsername.sendKeys("Not-Perfect-Tourist-9337");
         Thread.sleep(100);
 
+        // Enter password
         WebElement loginPassword = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-password\"]")));
         loginPassword.click();
         loginPassword.sendKeys("reddit1234***");
         Thread.sleep(100);
 
-        //does not work
-        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login\"]/auth-flow-modal/div[2]/faceplate-tracker/button")));
-        loginButton.click();
-        Thread.sleep(5000);
+        // Login but fail
+        Thread.sleep(1000);
+        loginPassword.sendKeys(Keys.ENTER);
     }
 }

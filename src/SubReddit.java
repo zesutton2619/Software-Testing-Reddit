@@ -41,14 +41,41 @@ public class SubReddit {
         WebElement loginPassword = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='login-password']")));
         loginPassword.sendKeys("reddit1234***");
         Thread.sleep(1000);
+        loginPassword.sendKeys(Keys.ENTER);
 
-//        // Find the SubReddit
-//        WebElement searchBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
-//        searchBar.click();
-//        Thread.sleep(2000);
-//        searchBar.sendKeys("cats");
-//        WebElement catsSubreddit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='reddit-typeahead-results-partial-container']/faceplate-tracker[1]/faceplate-tracker/li/a")));
-//        catsSubreddit.click();
+        //Search for Subreddit
+        Thread.sleep(5000);
+        WebElement searchBar = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large")));
+        searchBar.click();
+        Thread.sleep(2000);
+        searchBar.sendKeys("cats");
+        searchBar.sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
+        // Wait for the search results tabs to be present
+        WebElement tabGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search-results-page-tabgroup")));
+
+        // Get the tab links
+        List<WebElement> tabs = tabGroup.findElements(By.tagName("a"));
+
+        // Wait for the page to load
+        Thread.sleep(2000);
+        tabGroup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("search-results-page-tabgroup")));
+        tabs = tabGroup.findElements(By.tagName("a"));
+
+        // Get the tab text
+        String tabText = tabs.get(1).findElement(By.tagName("span")).getText().trim();
+
+        // Click on the tab
+        tabs.get(1).click();
+        System.out.println("Clicked on tab: " + tabText);
+
+        // Wait for the page to load
+        Thread.sleep(5000);
+
+        WebElement catsSubreddit = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"main-content\"]/div/reddit-feed/faceplate-tracker[1]")));
+        catsSubreddit.click();
+        //Joining SubReddit
+        Thread.sleep(3000);
     }
 
     @Test(priority = 1)
@@ -72,58 +99,25 @@ public class SubReddit {
 
     @Test(priority = 2)
     void unJoinSubReddit() throws InterruptedException {
-        WebElement unjoinButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/shreddit-app/dsa-transparency-modal-provider/report-flow-provider/div/div[1]/div[1]/section/div/div[2]/shreddit-subreddit-header-buttons//div/faceplate-tracker/shreddit-join-button//button")));
+        Actions actions = new Actions(driver);
+        try {
+            // Focus on the body of the page
+            actions.moveToElement(driver.findElement(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large"))).click().perform();
 
-        unjoinButton.click();
+            // Execute JavaScript to click the join button
+            for(int i = 0; i < 8; i++){
+                actions.sendKeys(Keys.TAB).perform();
+            }
+            actions.sendKeys(Keys.ENTER).perform();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Thread.sleep(5000);
-        driver.navigate().back();
     }
 
 
     @Test(priority = 3)
-    void selectPost() throws InterruptedException {
-        //Select Post
-        WebElement firstPost = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"main-content\"]/div[2]/article[1]")));
-        firstPost.click();
-        Thread.sleep(5000);
-        driver.navigate().back();
-    }
-
-    @Test(priority = 4)
-    void upvoteDownvotePost() throws InterruptedException {
-        driver.get("https://www.reddit.com/r/cats/comments/1c4qrb3/moth_has_breached_the_perimeter_target_acquired/");
-        //Upvote
-        WebElement upvote = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"t3_1c4qrb3\"]//div[2]/span/span/shreddit-async-loader/give-gold-hovercard/button")));
-        upvote.click();
-        Thread.sleep(200);
-        upvote.click();
-        //Downvote
-        WebElement downvote = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"t3_1c4qrb3\"]//div[2]/span/span/button")));
-        downvote.click();
-        Thread.sleep(200);
-        downvote.click();
-        Thread.sleep(5000);
-    }
-
-    @Test(priority = 5)
-    void commentOnPost() throws InterruptedException {
-        driver.get("https://www.reddit.com/r/cats/comments/1c4qrb3/moth_has_breached_the_perimeter_target_acquired/");
-        //Comment
-        WebElement commentBlock = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"main-content\"]/shreddit-async-loader/comment-body-header")));
-        commentBlock.click();
-        commentBlock.sendKeys("So cute!");
-
-
-        //ReplyToComment
-
-
-
-        //DeleteComment
-
-
-    }
-
-    @Test(priority = 6)
     void communityBookmarks() throws InterruptedException {
         //Back to Main Page
         //First 3 Community Bookmarks
@@ -131,7 +125,7 @@ public class SubReddit {
 
     }
 
-    @Test(priority = 7)
+    @Test(priority = 4)
     void sortByFlairCategories() throws InterruptedException {
         //Back to Main Page
         //First 3 Community Bookmarks
