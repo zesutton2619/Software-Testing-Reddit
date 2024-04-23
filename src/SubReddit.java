@@ -78,7 +78,7 @@ public class SubReddit {
         Thread.sleep(3000);
     }
 
-    @Test(priority = 1)
+    @Test(priority = 28)
     void joinSubReddit() throws InterruptedException {
         Actions actions = new Actions(driver);
         try {
@@ -97,7 +97,7 @@ public class SubReddit {
         Thread.sleep(5000);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 29)
     void unJoinSubReddit() throws InterruptedException {
         Actions actions = new Actions(driver);
         try {
@@ -117,19 +117,20 @@ public class SubReddit {
     }
 
 
-    @Test(priority = 3)
-    void communityBookmarks() throws InterruptedException {
-        //Back to Main Page
-        //First 3 Community Bookmarks
-        //First one is fine next 2 redirect
+    @Test(priority = 30)
+    void excludeContent() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        try {
+            // Focus on the body of the page
+            actions.moveToElement(driver.findElement(By.xpath("//*[@id=\"right-sidebar-container\"]"))).click().perform();
 
-    }
-
-    @Test(priority = 4)
-    void sortByFlairCategories() throws InterruptedException {
-        //Back to Main Page
-        //First 3 Community Bookmarks
-
+            // Execute JavaScript to click the join button
+            actions.sendKeys(Keys.TAB).perform();
+            Thread.sleep(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Thread.sleep(3000);
     }
 
     @AfterClass
