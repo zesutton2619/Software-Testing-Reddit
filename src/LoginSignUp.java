@@ -26,7 +26,7 @@ public class LoginSignUp {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    @Test(priority = 3)
+    @Test(priority = 24)
     void signUp() throws InterruptedException {
         WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
         loginShortcut.click();
@@ -80,13 +80,18 @@ public class LoginSignUp {
         Thread.sleep(1000);
         for(int i = 0; i < 15; i++){
             actions.sendKeys(Keys.TAB).perform();
-            Thread.sleep(1000);
+            Thread.sleep(500);
+        }
+        for(int i = 0; i < 2; i++){
+            actions.sendKeys(Keys.TAB).perform();
         }
         actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(2000);
+
     }
     //#login > auth-flow-modal > div.w-100 > faceplate-tracker > button
 
-    @Test(priority = 2)
+    @Test(priority = 25)
     void incorrectSignUp() throws InterruptedException {
         WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));
         loginShortcut.click();
@@ -99,7 +104,7 @@ public class LoginSignUp {
         emailInput.sendKeys(Keys.ENTER);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 26)
     void login() throws InterruptedException {
         // Click login shortcut
         WebElement loginShortcut = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='login-button']")));
@@ -118,7 +123,7 @@ public class LoginSignUp {
         loginPassword.sendKeys(Keys.ENTER);
     }
 
-    @Test(priority = 4)
+    @Test(priority = 27)
     void incorrectLogin() throws InterruptedException {
         // Click login shortcut
         WebElement loginShortcut = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"login-button\"]")));

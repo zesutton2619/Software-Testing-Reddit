@@ -16,10 +16,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import java.io.File;
 
 public class SubRedditPost {
     private static WebDriver driver;
@@ -27,15 +23,10 @@ public class SubRedditPost {
 
     @BeforeClass
     public static void setUp() throws InterruptedException {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--load-extension="+"C:/Users/Zach/Downloads/uBlockOrigin/platform/chromium/manifest.json");
-
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.reddit.com/");
         wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Increased wait time
-
-
 
         // Click login shortcut
         WebElement loginShortcut = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='login-button']")));
@@ -87,107 +78,65 @@ public class SubRedditPost {
         Thread.sleep(3000);
     }
 
-    @Test(priority = 1)
-    void selectPost() throws InterruptedException {
-        //Select Post
+    @Test(priority = 31)
+    void upVotePost() throws InterruptedException {
         Actions actions = new Actions(driver);
         try {
             // Focus on the body of the page
             actions.moveToElement(driver.findElement(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large"))).click().perform();
 
             // Execute JavaScript to click the join button
-            for(int i = 0; i < 22; i++){
+            for(int i = 0; i < 18; i++){
                 actions.sendKeys(Keys.TAB).perform();
             }
+            Thread.sleep(2000);
+            actions.sendKeys(Keys.ENTER).perform();
+            Thread.sleep(2000);
             actions.sendKeys(Keys.ENTER).perform();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Thread.sleep(1000);
+
+        Thread.sleep(2000);
     }
 
-    @Test(priority = 2)
-    void upvoteDownvotePost() throws InterruptedException {
-        //Select Post
-        driver.get("https://www.reddit.com/r/cats/");
+    @Test(priority = 32)
+    void downVotePost() throws InterruptedException {
+        Actions actions = new Actions(driver);
+
+        actions.sendKeys(Keys.TAB).perform();
+        Thread.sleep(2000);
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(2000);
+        actions.sendKeys(Keys.ENTER).perform();
+    }
+
+    @Test(priority = 33)
+    void comment() throws InterruptedException {
+        Actions actions = new Actions(driver);
+        actions.sendKeys(Keys.TAB).perform();
+        Thread.sleep(2000);
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(2000);
+        driver.navigate().back();
+        Thread.sleep(2000);
+
+    }
+
+    @Test(priority = 34)
+    void sharePost() throws InterruptedException {
         Actions actions = new Actions(driver);
         try {
             // Focus on the body of the page
             actions.moveToElement(driver.findElement(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large"))).click().perform();
 
             // Execute JavaScript to click the join button
-            for(int i = 0; i < 22; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-            Thread.sleep(3000);
             for(int i = 0; i < 21; i++){
                 actions.sendKeys(Keys.TAB).perform();
             }
+            Thread.sleep(2000);
             actions.sendKeys(Keys.ENTER).perform();
-            Thread.sleep(1000);
-            actions.sendKeys(Keys.TAB).perform();
-            actions.sendKeys(Keys.ENTER).perform();
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test(priority = 3)
-    void commentOnPost() throws InterruptedException {
-        Actions actions = new Actions(driver);
-        driver.get("https://www.reddit.com/r/cats/");
-        try {
-            // Focus on the body of the page
-            actions.moveToElement(driver.findElement(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large"))).click().perform();
-
-            // Execute JavaScript to click the join button
-            for(int i = 0; i < 22; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-
-            // Locate the comment box
-            for(int i = 0; i < 33; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-
-            // Type the comment
-            actions.sendKeys("cute cat! Meow").perform();
-            Thread.sleep(1000);
-
-            // Submit the comment
-            actions.sendKeys(Keys.TAB).perform();
-            actions.sendKeys(Keys.ENTER).perform();
-            Thread.sleep(3000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @Test(priority = 4)
-    void commentWeirdSymbolsOnPost() throws InterruptedException {
-        Actions actions = new Actions(driver);
-        driver.get("https://www.reddit.com/r/cats/");
-        try {
-            // Focus on the body of the page
-            actions.moveToElement(driver.findElement(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large"))).click().perform();
-
-            // Execute JavaScript to click the join button
-            for(int i = 0; i < 22; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-
-            for(int i = 0; i < 33; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-            actions.sendKeys("o((>ω< ))o").perform();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
             actions.sendKeys(Keys.TAB).perform();
             actions.sendKeys(Keys.ENTER).perform();
             Thread.sleep(3000);
@@ -195,44 +144,9 @@ public class SubRedditPost {
             e.printStackTrace();
         }
 
+        Thread.sleep(2000);
     }
 
-    @Test(priority = 5)
-    void commentEmojiOnPost() throws InterruptedException {
-        Actions actions = new Actions(driver);
-        driver.get("https://www.reddit.com/r/cats/");
-        try {
-            // Focus on the body of the page
-            actions.moveToElement(driver.findElement(By.xpath("/html/body/shreddit-app/reddit-header-large/reddit-header-action-items/header/nav/div[2]/div/div/search-dynamic-id-cache-controller/reddit-search-large"))).click().perform();
-
-            // Execute JavaScript to click the join button
-            for(int i = 0; i < 22; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-
-            for(int i = 0; i < 33; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-            actions.sendKeys("cute cat! Meow").perform();
-            Thread.sleep(1000);
-            for(int i = 0; i < 5; i++){
-                actions.sendKeys(Keys.TAB).perform();
-            }
-            actions.sendKeys(Keys.ENTER).perform();
-            Thread.sleep(500);
-            actions.sendKeys(Keys.ENTER).perform();
-            Thread.sleep(500);
-            actions.sendKeys(Keys.TAB).perform();
-            Thread.sleep(500);
-            actions.sendKeys(Keys.ENTER).perform();
-            Thread.sleep(3000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     @AfterClass
     public static void tearDown(){

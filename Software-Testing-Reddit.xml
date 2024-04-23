@@ -7,6 +7,10 @@
             <class name="SearchBar"/>
             <class name="NavigationBar"/>
             <class name="PopularCommunities"/>
+            <class name="LoginSignUp"/>
+            <class name="SubReddit"/>
+            <class name="SubRedditPost"/>
+            <class name="Messages"/>
         </classes>
     </test> <!-- RedditTests -->
 </suite> <!-- RedditTestSuite -->

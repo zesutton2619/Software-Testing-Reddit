@@ -47,7 +47,7 @@ public class Messages {
         loginPassword.sendKeys(Keys.ENTER);
     }
 
-    @Test(priority = 1)
+    @Test(priority = 35)
     void checkInbox() throws InterruptedException {
         Thread.sleep(2000);
         try {
@@ -61,21 +61,15 @@ public class Messages {
         driver.navigate().back();
     }
 
-    @Test(priority = 2)
-    void messageCategories() throws InterruptedException {
-        try {
-            WebElement joinButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.join-btn")));
-            joinButton.click();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Thread.sleep(5000);
-        driver.navigate().back();
-    }
-
-    @Test
+    @Test(priority = 36)
     void minimize() throws InterruptedException {
+        driver.get("https://www.reddit.com/");
+        Thread.sleep(2000);
+        for(int i = 0; i < 14; i++) {
+            // Perform Shift + Tab
+            actions.sendKeys(Keys.TAB).perform();
+        }
+        actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(2000);
         WebElement inbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("header-action-item-chat-button")));
         inbox.click();
@@ -83,32 +77,32 @@ public class Messages {
         for(int i = 0; i < 7; i++) {
             // Perform Shift + Tab
             actions.sendKeys(Keys.TAB).perform();
-            Thread.sleep(500);
         }
         actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(1000);
     }
 
-    @Test
+    @Test(priority = 37)
     void maximize() throws InterruptedException {
+        driver.get("https://www.reddit.com/");
         Thread.sleep(2000);
-        WebElement inbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("header-action-item-chat-button")));
-        inbox.click();
-        Thread.sleep(5000);
-        for(int i = 0; i < 7; i++) {
+        for(int i = 0; i < 9; i++) {
             // Perform Shift + Tab
             actions.sendKeys(Keys.TAB).perform();
-            Thread.sleep(500);
         }
-        actions.sendKeys(Keys.ENTER).perform();
-        Thread.sleep(1000);
-        actions.sendKeys(Keys.TAB).perform();
         actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(1000);
     }
 
-    @Test
+    @Test(priority = 38)
     void popout() throws InterruptedException {
+        driver.get("https://www.reddit.com/");
+        Thread.sleep(2000);
+        for(int i = 0; i < 14; i++) {
+            // Perform Shift + Tab
+            actions.sendKeys(Keys.TAB).perform();
+        }
+        actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(2000);
         WebElement inbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("header-action-item-chat-button")));
         inbox.click();
@@ -117,7 +111,6 @@ public class Messages {
         for(int i = 0; i < 8; i++) {
             // Perform Shift + Tab
             actions.sendKeys(Keys.TAB).perform();
-            Thread.sleep(500);
         }
 
         actions.sendKeys(Keys.ENTER).perform();
@@ -142,8 +135,15 @@ public class Messages {
         Thread.sleep(1000);
     }
 
-    @Test
+    @Test(priority = 39)
     void newChat() throws InterruptedException {
+        driver.get("https://www.reddit.com/");
+        Thread.sleep(2000);
+        for(int i = 0; i < 14; i++) {
+            // Perform Shift + Tab
+            actions.sendKeys(Keys.TAB).perform();
+        }
+        actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(2000);
         WebElement inbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("header-action-item-chat-button")));
         inbox.click();
@@ -152,7 +152,6 @@ public class Messages {
         for(int i = 0; i < 4; i++) {
             // Perform Shift + Tab
             actions.sendKeys(Keys.TAB).perform();
-            Thread.sleep(500);
         }
 
         actions.sendKeys(Keys.ENTER).perform();
@@ -161,17 +160,29 @@ public class Messages {
         Thread.sleep(2000);
         actions.sendKeys(Keys.TAB).perform();
         Thread.sleep(1000);
-        actions.moveToElement(driver.switchTo().activeElement()).sendKeys(Keys.ENTER).perform();
+        driver.switchTo().activeElement().sendKeys(Keys.ENTER);
         Thread.sleep(1000);
         actions.sendKeys(Keys.TAB).perform();
+        Thread.sleep(1000);
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(1000);
+        actions.sendKeys("test").perform();
         Thread.sleep(1000);
         actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(5000);
     }
 
 
-    @Test
+    @Test(priority = 40)
     void options() throws InterruptedException {
+        driver.get("https://www.reddit.com/");
+        Thread.sleep(2000);
+        for(int i = 0; i < 3; i++){
+            // Perform Shift + Tab
+            actions.keyDown(Keys.SHIFT).sendKeys(Keys.TAB).keyUp(Keys.SHIFT).perform();
+        }
+
+        actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(2000);
         WebElement inbox = wait.until(ExpectedConditions.elementToBeClickable(By.id("header-action-item-chat-button")));
         inbox.click();
@@ -180,32 +191,29 @@ public class Messages {
         for(int i = 0; i < 6; i++){
             // Perform Shift + Tab
             actions.keyDown(Keys.SHIFT).sendKeys(Keys.TAB).keyUp(Keys.SHIFT).perform();
-            Thread.sleep(500);
         }
 
         actions.sendKeys(Keys.ENTER).perform();
         Thread.sleep(1000);
+        driver.switchTo().activeElement().sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
+        driver.switchTo().activeElement().sendKeys(Keys.ENTER);
+        Thread.sleep(1000);
         actions.sendKeys(Keys.ARROW_DOWN).perform();
-        actions.sendKeys(Keys.ENTER).perform();
+        driver.switchTo().activeElement().sendKeys(Keys.ENTER);
+        Thread.sleep(2000);
     }
 
-
-    @Test(priority = 3)
-    void startChat() throws InterruptedException {
-        try {
-            WebElement joinButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button.join-btn")));
-            joinButton.click();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Thread.sleep(5000);
-        driver.navigate().back();
-    }
-
-    @Test
+    @Test(priority = 41)
     void closeInbox() throws InterruptedException {
-
+        driver.get("https://www.reddit.com/");
+        Thread.sleep(5000);
+        for(int i = 0; i < 14; i++) {
+            // Perform Shift + Tab
+            actions.sendKeys(Keys.TAB).perform();
+        }
+        actions.sendKeys(Keys.ENTER).perform();
+        Thread.sleep(2000);
     }
 
     @AfterClass
